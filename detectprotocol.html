@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>detect custom protocol</title>
+</head>
+<body>
+Open this protocol <input id=p value="facebook://"> otherwise open a website<br>
+<input type=submit id=s>
+
+<script>
+  s.onclick=function(){
+  location=p.value
+
+  failback = setTimeout(function(){
+    window.open('https://sakurity.com')
+  }, 100);
+
+  window.onblur=function(){
+    clearTimeout(failback);
+  }
+}
+</script>
+</body>
+</html>

