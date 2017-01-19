@@ -9,16 +9,16 @@ Open this protocol <input id=p value="facebook://"> otherwise open a website<br>
 
 <script>
   s.onclick=function(){
+
+  var failback = setTimeout(function(){window.open('https://sakurity.com')}, 100);
+  window.onblur=function(){clearTimeout(failback)}
   location=p.value
 
-  failback = setTimeout(function(){
-    window.open('https://sakurity.com')
-  }, 100);
-
-  window.onblur=function(){
-    clearTimeout(failback);
-  }
 }
+
+
+//apporweb
+
 </script>
 <iframe src="uber://"></iframe>
 </body>
